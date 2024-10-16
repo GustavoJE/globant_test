@@ -15,8 +15,9 @@ Next, in the db_migration.py file, change the DB credentials on line 7
 
 After this, run the uvicorn server:
 ```sh
-uvicorn db_migration:app --reload
+HOST=host USER=user PASSWORD=password DB=db uvicorn db_migration:app --reload
 ```
+Make sure to change the values corresponding to the database you want to connect to.
 
 Then, open a browser tab and enter the following:
 ```

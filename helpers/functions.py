@@ -1,8 +1,9 @@
+from fastapi import HTTPException
 import pandas as pd
-import numpy as np    
+import numpy as np
 
 def write_data(table, file, conn):
-       
+          
     for batch in pd.read_csv(file.file, header=None, chunksize=1000):
         batch = batch.replace(np.nan, None)
            
@@ -16,7 +17,7 @@ def write_data(table, file, conn):
                             conn.commit()
 
                 except:
-                    print("Something went wrong :(")
+                    raise HTTPException(400, f"Writing to database has failed")
 
             case "departments":
                 try:
@@ -27,7 +28,7 @@ def write_data(table, file, conn):
                             conn.commit()
 
                 except:
-                    print("Something went wrong :(")
+                    raise HTTPException(400, f"Writing to database has failed")
 
             case "jobs":
                 try:
@@ -38,7 +39,7 @@ def write_data(table, file, conn):
                             conn.commit()
 
                 except:
-                    print("Something went wrong :(")
+                    raise HTTPException(400, f"Writing to database has failed")
 
     print("Data inserted successfully")
     
