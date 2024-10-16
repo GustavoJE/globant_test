@@ -11,8 +11,6 @@ in order to run this code, first install the dependencies:
 $ pip install -r requirements.txt
 ```
 
-Next, in the db_migration.py file, change the DB credentials on line 7
-
 After this, run the uvicorn server:
 ```sh
 HOST=host USER=user PASSWORD=password DB=db uvicorn db_migration:app --reload
@@ -26,4 +24,25 @@ http://127.0.0.1:8000/docs
 
 Finally, use the Swagger UI to try each endpoint.
 
+### metrics.py ###
+The second challenge requires us to get some metrics from the data that we previously stored. First we need an endpoint that returns the number of hired employees for each department and job divided by each quarter of the year 2021. The second endpoint returns the id, name and ammount of hired employees for each department that hired more employees than the mean of employees hired during 2021 for all departments.     
+
+in order to run this code, first install the dependencies:
+
+```sh
+$ pip install -r requirements.txt
+```
+
+After this, run the uvicorn server:
+```sh
+HOST=host USER=user PASSWORD=password DB=db uvicorn metrics:app --reload
+```
+Make sure to change the values corresponding to the database you want to connect to.
+
+Then, open a browser tab and enter the following:
+```
+http://127.0.0.1:8000/docs
+```
+
+Finally, use the Swagger UI to try each endpoint.
 
