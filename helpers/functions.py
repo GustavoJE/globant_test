@@ -3,6 +3,10 @@ import pandas as pd
 import numpy as np
 
 def write_data(table, file, conn):
+
+    # First we validate that the file is a csv and raise an exception if not
+    if not file.filename.endswith('.csv'):
+        raise HTTPException(status_code=400, detail="File must be a CSV.")
           
     for batch in pd.read_csv(file.file, header=None, chunksize=1000):
         batch = batch.replace(np.nan, None)
